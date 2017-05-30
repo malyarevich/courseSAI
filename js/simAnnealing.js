@@ -159,10 +159,16 @@ function preperTwo() {
 	});
 	let averX = sumX / path2.length;
 	let averY = sumY / path2.length;
+	//averX; averY+10
 	
 	$.each(path2, function(index, value) {
 		pathValues[index] = new Array;
-		pathValues[index][0] = Math.acos(value[0]/(Math.pow(value[0], 2) + Math.pow(value[1], 2)));
+		let ab = value[0]*averX + value[1]*averY+10;
+		let ma = Math.sqrt(Math.pow(value[0], 2) + Math.pow(value[1], 2));
+		let mb = Math.sqrt(Math.pow(averX, 2) + Math.pow(averY+10, 2));
+		let znam = ma * mb;
+		let cosA = ab / znam;
+		pathValues[index][0] = Math.acos(cosA);
 		pathValues[index][1] = index;
 		if (pathValues[index][0] < 0) {
 			pathValues[index][0] = 360 - pathValues[index][0];
